@@ -236,14 +236,14 @@ export default function App() {
       {/* POPUP */}
       <AnimatePresence>
         {activePlayer && (
-          <motion.div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={()=>setActivePlayer(null)}>
+          <motion.div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={()=>setActivePlayer(null)} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
             <motion.div onClick={e=>e.stopPropagation()} className={`${(()=>{
               const i = overallSorted.findIndex(p=>p.id===activePlayer.id);
               if(i===0) return "bg-yellow-400 text-black";
               if(i===1) return "bg-gray-300 text-black";
               if(i===2) return "bg-amber-700 text-white";
               return "bg-gray-800 text-white";
-            })()} p-6 rounded-2xl w-[90%] max-w-lg relative`}>
+            })()} p-6 rounded-2xl w-[90%] max-w-lg relative`} initial={{scale:0.85, opacity:0}} animate={{scale:1, opacity:1}} exit={{scale:0.85, opacity:0}} transition={{duration:0.2}}>
 
               <button onClick={()=>setActivePlayer(null)} className="absolute top-2 right-3 text-xl font-bold">✕</button>
 
@@ -299,7 +299,7 @@ export default function App() {
 
               <div className="space-y-3">
                 <div>
-                  <div className="text-yellow-400 font-bold">🏆 {lang === "en" ? "Tier 1" : "Tier 1"}</div>
+                  <div className="text-yellow-400 font-bold"> {lang === "en" ? "Tier 1" : "Tier 1"}</div>
                   <div className="flex gap-2 mt-1">
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↑ 60 {lang === "en" ? "Points" : "Puan"}</span>
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↓ 45 {lang === "en" ? "Points" : "Puan"}</span>
@@ -307,7 +307,7 @@ export default function App() {
                 </div>
 
                 <div>
-                  <div className="text-gray-300 font-bold">🥈 {lang === "en" ? "Tier 2" : "Tier 2"}</div>
+                  <div className="text-gray-300 font-bold"> {lang === "en" ? "Tier 2" : "Tier 2"}</div>
                   <div className="flex gap-2 mt-1">
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↑ 30 {lang === "en" ? "Points" : "Puan"}</span>
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↓ 20 {lang === "en" ? "Points" : "Puan"}</span>
@@ -315,7 +315,7 @@ export default function App() {
                 </div>
 
                 <div>
-                  <div className="text-amber-600 font-bold">🥉 {lang === "en" ? "Tier 3" : "Tier 3"}</div>
+                  <div className="text-amber-600 font-bold"> {lang === "en" ? "Tier 3" : "Tier 3"}</div>
                   <div className="flex gap-2 mt-1">
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↑ 10 {lang === "en" ? "Points" : "Puan"}</span>
                     <span className="bg-gray-800 px-3 py-1 rounded-full">↓ 6 {lang === "en" ? "Points" : "Puan"}</span>
